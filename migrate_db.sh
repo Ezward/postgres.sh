@@ -1,10 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-: ${PGDATABASE:=""}
-: ${PGUSER:=postgres}
-: ${PGHOST:=localhost}
-: ${PGPORT:=5432}
+# set defaults
+. ./defaults_db.sh
 
 if [[ "$PGDATABASE" == "" ]] || [[ "$#" < "1" ]] || [[ "$#" > "2" ]]; then
     echo

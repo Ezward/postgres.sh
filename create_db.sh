@@ -1,20 +1,20 @@
 #!/bin/bash
 set -euo pipefail
 
-: ${DBNAME:=""}
-: ${USER:=postgres}
-: ${HOST:=localhost}
-: ${PORT:=5432}
+: ${PGDATABASE:=""}
+: ${PGUSER:=postgres}
+: ${PGHOST:=localhost}
+: ${PGPORT:=5432}
 
-if [ "$DBNAME" == "" ] || [ "$#" != "0" ]; then
+if [ "$PGDATABASE" == "" ] || [ "$#" != "0" ]; then
     echo
-    echo "Usage: DBNAME=<dbname> $0"
+    echo "Usage: PGDATABASE=<dbname> $0"
     echo "Optionally override these defaults:"
-    echo "  USER:=postgres"
-    echo "  HOST:=localhost"
-    echo "  PORT:=5432"
+    echo "  PGUSER:=postgres"
+    echo "  PGHOST:=localhost"
+    echo "  PGPORT:=5432"
     echo
     exit 1
 fi
 
-createdb -h ${HOST} -p ${PORT} -U ${USER} ${DBNAME}
+createdb -h ${PGHOST} -p ${PGPORT} -U ${PGUSER} ${PGDATABASE}
